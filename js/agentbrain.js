@@ -4,7 +4,8 @@ function randomInt(n) {
 };
 
 class AgentBrain {
-    constructor(gameEngine) {
+    constructor(agent, gameEngine) {
+        this.agent = agent;
         this.size = 4;
         this.previousState = gameEngine.grid.serialize();
         this.reset();

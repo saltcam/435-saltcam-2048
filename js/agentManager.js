@@ -1,7 +1,7 @@
 // This code runs the simulation and sends the selected moves to the game
 function AgentManager(gameManager) {
     this.gameManager = gameManager;
-    this.agent = new Agent();
+    this.agent = new Agent(gameManager);
     this.moveCount = 0;
 
     this.start = Date.now();
@@ -57,11 +57,11 @@ AgentManager.prototype.selectMove = function () {
     } else { // game ongoing
         if (this.gameManager.won && !this.gameManager.keepPlaying) {
             this.gameManager.keepplaying();
-            this.selectMove();
+            this.selectMove(0);
             this.twentyfortyeight = true;
         }
         else {
-            if (!this.gameManager.move(this.agent.selectMove(this.gameManager))) console.log("bad move");
+            if (!this.gameManager.move(this.agent.selectMove(this.gameManager, 0))) console.log("bad move");
             else this.moveCount++;
 
             var that = this;
